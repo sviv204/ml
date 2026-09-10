@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Machine Learning Python Lab</title>
+<style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f7fb;
+        color: #1f2937;
+        line-height: 1.6;
+    }
+    header {
+        background: linear-gradient(135deg, #111827, #2563eb);
+        color: white;
+        padding: 55px 20px;
+        text-align: center;
+    }
+    header h1 { margin: 0 0 10px; font-size: 42px; }
+    header p { margin: 0; font-size: 18px; opacity: .9; }
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        box-shadow: 0 2px 8px rgba(0,0,0,.06);
+        text-align: center;
+        padding: 12px;
+    }
+    nav a {
+        display: inline-block;
+        color: #1d4ed8;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 5px 12px;
+    }
+    nav a:hover { text-decoration: underline; }
+    main {
+        max-width: 1100px;
+        margin: 35px auto;
+        padding: 0 18px;
+    }
+    .intro, .experiment {
+        background: white;
+        border-radius: 14px;
+        padding: 28px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 18px rgba(15,23,42,.07);
+        border: 1px solid #e5e7eb;
+    }
+    .experiment h2 {
+        color: #1d4ed8;
+        margin-top: 0;
+        border-bottom: 2px solid #dbeafe;
+        padding-bottom: 10px;
+    }
+    h3 { color: #111827; margin-top: 26px; }
+    .aim {
+        background: #eff6ff;
+        border-left: 5px solid #2563eb;
+        padding: 14px 18px;
+        border-radius: 7px;
+    }
+    code, pre { font-family: Consolas, Monaco, monospace; }
+    pre {
+        background: #111827;
+        color: #e5e7eb;
+        padding: 20px;
+        border-radius: 10px;
+        overflow-x: auto;
+        font-size: 14px;
+        line-height: 1.55;
+    }
+    .output {
+        background: #0b1220;
+        color: #d1fae5;
+        padding: 18px;
+        border-radius: 10px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        font-family: Consolas, Monaco, monospace;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+    }
+    th, td {
+        border: 1px solid #d1d5db;
+        padding: 11px 13px;
+        text-align: left;
+    }
+    th {
+        background: #eff6ff;
+        color: #1e3a8a;
+    }
+    .badge {
+        display: inline-block;
+        background: #dbeafe;
+        color: #1e40af;
+        padding: 5px 10px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: bold;
+        margin: 3px;
+    }
+    footer {
+        text-align: center;
+        padding: 30px;
+        background: #111827;
+        color: #d1d5db;
+        margin-top: 40px;
+    }
+    .note {
+        background: #fffbeb;
+        border-left: 5px solid #f59e0b;
+        padding: 13px 17px;
+        border-radius: 7px;
+    }
+    @media (max-width: 700px) {
+        header h1 { font-size: 30px; }
+        .intro, .experiment { padding: 20px; }
+        pre { font-size: 12px; }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Machine Learning Python Lab</h1>
+    <p>Python Programs, Statistical Analysis and ML Libraries</p>
+</header>
+
+<nav>
+    <a href="#exp1">Experiment 1</a>
+    <a href="#exp2">Experiment 2</a>
+    <a href="#exp3">Experiment 3</a>
+</nav>
+
+<main>
+
+<section class="intro">
+    <h2>About This Lab</h2>
+    <p>
+        This website contains three Python programming experiments related to
+        statistics, scientific computing, data analysis and visualization for
+        Machine Learning applications.
+    </p>
+    <span class="badge">Python</span>
+    <span class="badge">Statistics</span>
+    <span class="badge">NumPy</span>
+    <span class="badge">SciPy</span>
+    <span class="badge">Pandas</span>
+    <span class="badge">Matplotlib</span>
+</section>
+
+<section class="experiment" id="exp1">
+    <h2>Experiment 1: Central Tendency and Dispersion</h2>
+
+    <div class="aim">
+        <strong>Aim:</strong> To write a Python program to compute Mean, Median,
+        Mode, Variance and Standard Deviation.
+    </div>
+
+    <h3>Program Using Statistics Module</h3>
+    <pre><code>import statistics
+
+# Input data
+data = list(map(float, input("Enter the data values separated by spaces: ").split()))
+
+# Mean
+mean = statistics.mean(data)
+
+# Median
+median = statistics.median(data)
+
+# Mode
+try:
+    mode = statistics.mode(data)
+except statistics.StatisticsError:
+    mode = "No unique mode"
+
+# Variance (Sample Variance)
+variance = statistics.variance(data)
+
+# Standard Deviation (Sample Standard Deviation)
+std_deviation = statistics.stdev(data)
+
+# Display Results
+print("\n----- Statistical Measures -----")
+print("Mean               :", mean)
+print("Median             :", median)
+print("Mode               :", mode)
+print("Variance           :", variance)
+print("Standard Deviation :", std_deviation)</code></pre>
+
+    <h3>Sample Input</h3>
+    <div class="output">Enter the data values separated by spaces:
+10 20 30 40 50</div>
+
+    <h3>Sample Output</h3>
+    <div class="output">----- Statistical Measures -----
+Mean               : 30.0
+Median             : 30.0
+Mode               : 10.0
+Variance           : 250.0
+Standard Deviation : 15.811388300841896</div>
+
+    <h3>Manual Implementation Without Statistics Module</h3>
+    <pre><code>import math
+from collections import Counter
+
+# Input data
+data = list(map(float, input("Enter the data values separated by spaces: ").split()))
+n = len(data)
+
+# Mean
+mean = sum(data) / n
+
+# Median
+sorted_data = sorted(data)
+if n % 2 == 0:
+    median = (sorted_data[n//2 - 1] + sorted_data[n//2]) / 2
+else:
+    median = sorted_data[n//2]
+
+# Mode
+count = Counter(data)
+max_freq = max(count.values())
+modes = [key for key, value in count.items() if value == max_freq]
+
+if max_freq == 1:
+    mode = "No Mode"
+elif len(modes) == 1:
+    mode = modes[0]
+else:
+    mode = modes
+
+# Sample Variance
+variance = sum((x - mean) ** 2 for x in data) / (n - 1)
+
+# Sample Standard Deviation
+std_deviation = math.sqrt(variance)
+
+# Output
+print("\nMean               :", mean)
+print("Median             :", median)
+print("Mode               :", mode)
+print("Variance           :", variance)
+print("Standard Deviation :", std_deviation)</code></pre>
+
+    <h3>Important Functions</h3>
+    <table>
+        <tr><th>Measure</th><th>Purpose</th></tr>
+        <tr><td>Mean</td><td>Finds the average value of the data.</td></tr>
+        <tr><td>Median</td><td>Finds the middle value after sorting the data.</td></tr>
+        <tr><td>Mode</td><td>Finds the most frequently occurring value.</td></tr>
+        <tr><td>Variance</td><td>Measures how spread out the values are from the mean.</td></tr>
+        <tr><td>Standard Deviation</td><td>Measures the average spread of data around the mean.</td></tr>
+    </table>
+</section>
+
+<section class="experiment" id="exp2">
+    <h2>Experiment 2: Study of Basic Python Libraries</h2>
+
+    <div class="aim">
+        <strong>Aim:</strong> To study the basic Python libraries
+        Statistics, Math, NumPy and SciPy.
+    </div>
+
+    <h3>Python Program</h3>
+    <pre><code>import statistics
+import math
+import numpy as np
+from scipy import stats
+
+# Sample Data
+data = [10, 20, 30, 40, 50]
+
+print("Original Data:", data)
+
+# ---------------- Statistics Library ----------------
+print("\n--- Statistics Library ---")
+print("Mean               :", statistics.mean(data))
+print("Median             :", statistics.median(data))
+print("Mode               :", statistics.mode(data))
+print("Variance           :", statistics.variance(data))
+print("Standard Deviation :", statistics.stdev(data))
+
+# ---------------- Math Library ----------------
+print("\n--- Math Library ---")
+print("Square Root of 25  :", math.sqrt(25))
+print("Factorial of 5     :", math.factorial(5))
+print("Power (2^5)        :", math.pow(2, 5))
+print("Value of Pi        :", math.pi)
+print("Value of e         :", math.e)
+print("Log(10)            :", math.log(10))
+print("Sin(30°)           :", math.sin(math.radians(30)))
+
+# ---------------- NumPy Library ----------------
+print("\n--- NumPy Library ---")
+arr = np.array(data)
+
+print("Array              :", arr)
+print("Mean               :", np.mean(arr))
+print("Median             :", np.median(arr))
+print("Sum                :", np.sum(arr))
+print("Maximum            :", np.max(arr))
+print("Minimum            :", np.min(arr))
+print("Standard Deviation :", np.std(arr))
+print("Square of Array    :", np.square(arr))
+
+# ---------------- SciPy Library ----------------
+print("\n--- SciPy Library ---")
+print("Mean               :", stats.tmean(arr))
+print("Mode               :", stats.mode(arr, keepdims=True))
+print("Skewness           :", stats.skew(arr))
+print("Kurtosis           :", stats.kurtosis(arr))
+print("Z-Score            :", stats.zscore(arr))</code></pre>
+
+    <h3>Sample Output</h3>
+    <div class="output">Original Data: [10, 20, 30, 40, 50]
+
+--- Statistics Library ---
+Mean               : 30
+Median             : 30
+Mode               : 10
+Variance           : 250
+Standard Deviation : 15.811388300841896
+
+--- Math Library ---
+Square Root of 25  : 5.0
+Factorial of 5     : 120
+Power (2^5)        : 32.0
+Value of Pi        : 3.141592653589793
+Value of e         : 2.718281828459045
+Log(10)            : 2.302585092994046
+Sin(30°)           : 0.5
+
+--- NumPy Library ---
+Array              : [10 20 30 40 50]
+Mean               : 30.0
+Median             : 30.0
+Sum                : 150
+Maximum            : 50
+Minimum            : 10
+Standard Deviation : 14.142135623730951
+Square of Array    : [ 100  400  900 1600 2500]
+
+--- SciPy Library ---
+Mean               : 30.0
+Mode               : ModeResult(mode=array([10]), count=array([1]))
+Skewness           : 0.0
+Kurtosis           : -1.3
+Z-Score            : [-1.41421356 -0.70710678  0.  0.70710678  1.41421356]</div>
+
+    <h3>Description of Libraries</h3>
+    <table>
+        <tr><th>Library</th><th>Purpose</th><th>Common Functions</th></tr>
+        <tr><td>Statistics</td><td>Performs statistical calculations</td><td>mean(), median(), mode(), variance(), stdev()</td></tr>
+        <tr><td>Math</td><td>Provides mathematical functions and constants</td><td>sqrt(), factorial(), pow(), log(), sin(), pi, e</td></tr>
+        <tr><td>NumPy</td><td>Efficient numerical computing and array operations</td><td>array(), mean(), sum(), max(), min(), std()</td></tr>
+        <tr><td>SciPy</td><td>Scientific computing and advanced statistics</td><td>stats.mode(), stats.skew(), stats.kurtosis(), stats.zscore()</td></tr>
+    </table>
+</section>
+
+<section class="experiment" id="exp3">
+    <h2>Experiment 3: Pandas and Matplotlib for ML</h2>
+
+    <div class="aim">
+        <strong>Aim:</strong> To study Python libraries for Machine Learning
+        applications such as Pandas and Matplotlib.
+    </div>
+
+    <h3>Python Program</h3>
+    <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+
+# Create a DataFrame
+data = {
+    "Student": ["A", "B", "C", "D", "E"],
+    "Marks": [85, 90, 78, 92, 88],
+    "Age": [20, 21, 20, 22, 21]
+}
+
+df = pd.DataFrame(data)
+
+# ---------------- Pandas Operations ----------------
+print("Original DataFrame")
+print(df)
+
+print("\nFirst 3 Rows")
+print(df.head(3))
+
+print("\nStatistical Summary")
+print(df.describe())
+
+print("\nAverage Marks:", df["Marks"].mean())
+print("Maximum Marks:", df["Marks"].max())
+print("Minimum Marks:", df["Marks"].min())
+
+# ---------------- Matplotlib Visualization ----------------
+
+# Bar Chart
+plt.figure(figsize=(6,4))
+plt.bar(df["Student"], df["Marks"])
+plt.title("Student Marks")
+plt.xlabel("Students")
+plt.ylabel("Marks")
+plt.grid(True)
+plt.show()
+
+# Line Chart
+plt.figure(figsize=(6,4))
+plt.plot(df["Student"], df["Marks"], marker='o')
+plt.title("Student Marks Trend")
+plt.xlabel("Students")
+plt.ylabel("Marks")
+plt.grid(True)
+plt.show()
+
+# Pie Chart
+plt.figure(figsize=(6,6))
+plt.pie(df["Marks"], labels=df["Student"], autopct="%1.1f%%")
+plt.title("Marks Distribution")
+plt.show()</code></pre>
+
+    <h3>Sample Console Output</h3>
+    <div class="output">Original DataFrame
+  Student  Marks  Age
+0       A     85   20
+1       B     90   21
+2       C     78   20
+3       D     92   22
+4       E     88   21
+
+First 3 Rows
+  Student  Marks  Age
+0       A     85   20
+1       B     90   21
+2       C     78   20
+
+Statistical Summary
+           Marks        Age
+count   5.000000   5.000000
+mean   86.600000  20.800000
+std     5.458938   0.836660
+min    78.000000  20.000000
+25%    85.000000  20.000000
+50%    88.000000  21.000000
+75%    90.000000  21.000000
+max    92.000000  22.000000
+
+Average Marks: 86.6
+Maximum Marks: 92
+Minimum Marks: 78</div>
+
+    <h3>Expected Graphs</h3>
+    <table>
+        <tr><th>Graph</th><th>Purpose</th></tr>
+        <tr><td>Bar Chart</td><td>Shows Student vs. Marks.</td></tr>
+        <tr><td>Line Chart</td><td>Shows the trend of student marks.</td></tr>
+        <tr><td>Pie Chart</td><td>Shows percentage distribution of marks.</td></tr>
+    </table>
+
+    <h3>Common Pandas Functions</h3>
+    <table>
+        <tr><th>Function</th><th>Purpose</th></tr>
+        <tr><td>DataFrame()</td><td>Creates a table/DataFrame.</td></tr>
+        <tr><td>head()</td><td>Displays the first few rows.</td></tr>
+        <tr><td>describe()</td><td>Generates a statistical summary.</td></tr>
+        <tr><td>mean()</td><td>Calculates the average.</td></tr>
+        <tr><td>max()</td><td>Finds the maximum value.</td></tr>
+        <tr><td>min()</td><td>Finds the minimum value.</td></tr>
+    </table>
+
+    <h3>Common Matplotlib Functions</h3>
+    <table>
+        <tr><th>Function</th><th>Purpose</th></tr>
+        <tr><td>plt.bar()</td><td>Creates a bar chart.</td></tr>
+        <tr><td>plt.plot()</td><td>Creates a line graph.</td></tr>
+        <tr><td>plt.pie()</td><td>Creates a pie chart.</td></tr>
+        <tr><td>plt.title()</td><td>Adds a chart title.</td></tr>
+        <tr><td>plt.xlabel()</td><td>Labels the X-axis.</td></tr>
+        <tr><td>plt.ylabel()</td><td>Labels the Y-axis.</td></tr>
+        <tr><td>plt.grid()</td><td>Displays grid lines.</td></tr>
+        <tr><td>plt.show()</td><td>Displays the graph.</td></tr>
+    </table>
+
+    <div class="note">
+        <strong>Note:</strong> GitHub Pages can display these Python programs,
+        but normal GitHub Pages hosting does not execute Python code directly.
+        The Python programs should be run in Python/Jupyter/Colab for actual
+        execution and graph generation.
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p>Machine Learning Python Lab &copy; 2026</p>
+    <p>Statistics • NumPy • SciPy • Pandas • Matplotlib</p>
+</footer>
+
+</body>
+</html>
