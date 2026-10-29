@@ -1,5 +1,6 @@
 1.Write a python program to compute Central Tendency Measures: Mean, Median, Mode Measure of Dispersion: Variance, Standard Deviation
 Below is a Python program to calculate the Measures of Central Tendency (Mean, Median, Mode) and Measures of Dispersion (Variance, Standard Deviation) using the built-in statistics module.
+
 # Python Program to Compute Mean, Median, Mode,
 # Variance, and Standard Deviation
 
@@ -96,6 +97,11 @@ Python Program: Study of Basic Python Libraries (Statistics, Math, NumPy, SciPy)
 # Study of Python Basic Libraries:
 # Statistics, Math, NumPy, and SciPy
 
+
+# 2
+# Study of Python Basic Libraries:
+# Statistics, Math, NumPy, and SciPy
+
 import statistics
 import math
 import numpy as np
@@ -144,47 +150,6 @@ print("Mode               :", stats.mode(arr, keepdims=True))
 print("Skewness           :", stats.skew(arr))
 print("Kurtosis           :", stats.kurtosis(arr))
 print("Z-Score            :", stats.zscore(arr))
-Sample Output
-Original Data: [10, 20, 30, 40, 50]
-
---- Statistics Library ---
-Mean               : 30
-Median             : 30
-Mode               : 10
-Variance           : 250
-Standard Deviation : 15.811388300841896
-
---- Math Library ---
-Square Root of 25  : 5.0
-Factorial of 5     : 120
-Power (2^5)        : 32.0
-Value of Pi        : 3.141592653589793
-Value of e         : 2.718281828459045
-Log(10)            : 2.302585092994046
-Sin(30°)           : 0.5
-
---- NumPy Library ---
-Array              : [10 20 30 40 50]
-Mean               : 30.0
-Median             : 30.0
-Sum                : 150
-Maximum            : 50
-Minimum            : 10
-Standard Deviation : 14.142135623730951
-Square of Array    : [ 100  400  900 1600 2500]
-
---- SciPy Library ---
-Mean               : 30.0
-Mode               : ModeResult(mode=array([10]), count=array([1]))
-Skewness           : 0.0
-Kurtosis           : -1.3
-Z-Score            : [-1.41421356 -0.70710678  0.  0.70710678  1.41421356]
-Description of Libraries
-Library	Purpose	Common Functions
-Statistics	Performs statistical calculations	mean(), median(), mode(), variance(), stdev()
-Math	Provides mathematical functions and constants	sqrt(), factorial(), pow(), log(), sin(), pi, e
-NumPy	Efficient numerical computing and array operations	array(), mean(), sum(), max(), min(), std()
-SciPy	Scientific computing and advanced statistics	stats.mode(), stats.skew(), stats.kurtosis(), stats.zscore()
 
 
 
@@ -302,5 +267,446 @@ plt.ylabel()	Labels Y-axis
 plt.grid()	Displays grid lines
 plt.show()	Displays the graph
 This experiment introduces two essential Python libraries for Machine Learning:
+
+
 •	Pandas for data loading, cleaning, manipulation, and statistical analysis. 
 •	Matplotlib for visualizing data using bar charts, line graphs, pie charts, histograms, scatter plots, and other graphical representations. 
+
+
+4. Write a Python program to implement Simple Linear Regression .
+
+# 4
+# Simple Linear Regression using Scikit-learn
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Sample dataset
+X = np.array([1, 2, 3, 4, 5, 6]).reshape(-1, 1)
+Y = np.array([2, 4, 5, 4, 5, 7])
+
+# Create Linear Regression model
+model = LinearRegression()
+
+# Train the model
+model.fit(X, Y)
+
+# Predict output
+Y_pred = model.predict(X)
+
+# Regression Equation
+print("Slope (m):", model.coef_[0])
+print("Intercept (c):", model.intercept_)
+print("Regression Equation: Y = {:.2f}X + {:.2f}".format(model.coef_[0], model.intercept_))
+
+# Predict for a new value
+x_new = np.array([[7]])
+prediction = model.predict(x_new)
+print("Predicted value for X = 7:", prediction[0])
+
+# Plot the data and regression line
+plt.scatter(X, Y, color='blue', label='Actual Data')
+plt.plot(X, Y_pred, color='red', linewidth=2, label='Regression Line')
+plt.title("Simple Linear Regression")
+plt.xlabel("Independent Variable (X)")
+plt.ylabel("Dependent Variable (Y)")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+5. Implementation of Multiple Linear Regression for House Price Prediction using sklearn.
+
+# 5
+# Multiple Linear Regression for House Price Prediction
+
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+
+# Sample dataset
+data = {
+    'Area': [1000, 1200, 1500, 1800, 2000, 2500],
+    'Bedrooms': [2, 2, 3, 3, 4, 4],
+    'Age': [20, 15, 18, 10, 8, 5],
+    'Price': [3000000, 3500000, 4500000, 5000000, 6000000, 7000000]
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Independent variables (Features)
+X = df[['Area', 'Bedrooms', 'Age']]
+
+# Dependent variable (Target)
+y = df['Price']
+
+# Create Multiple Linear Regression Model
+model = LinearRegression()
+
+# Train the model
+model.fit(X, y)
+
+# Display coefficients and intercept
+print("Regression Coefficients:")
+print("Area Coefficient      :", model.coef_[0])
+print("Bedroom Coefficient   :", model.coef_[1])
+print("Age Coefficient       :", model.coef_[2])
+print("Intercept             :", model.intercept_)
+
+# Predict house price
+new_house = [[1600, 3, 12]]   # Area, Bedrooms, Age
+predicted_price = model.predict(new_house)
+
+print("\nPredicted House Price: ₹{:.2f}".format(predicted_price[0]))
+
+6. Implementation of Decision tree using sklearn and its parameter tuning 
+
+# 6
+import numpy as np
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split,GridSearchCV
+from sklearn.metrics import accuracy_score
+
+# Sample dataset
+data={
+    'Age':[25,30,45,35,22,40,28,50],
+    'Income':[30000,50000,70000,60000,20000,80000,40000,90000],
+    'Buy':[0,1,1,1,0,1,0,1] #0=No,1=Yes
+    }
+df=pd.DataFrame(data)
+print(df)
+
+#Splitting dataset
+
+X=df[['Age','Income']]
+Y=df['Buy']
+X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.3,random_state=42)
+#
+
+#---Decision Tree Model------
+
+model=DecisionTreeClassifier(random_state=42)
+model.fit(X_train,Y_train)
+
+# Prediction
+Y_pred=model.predict(X_test)
+
+print("Accuracy without tuning:",accuracy_score(Y_test,Y_pred))
+
+#-------Parameter Tuning using GridSearchCV--------
+
+param_grid={
+    'max_depth':[2,3,4],
+    'criterion':['gini','entropy']
+}
+grid=GridSearchCV(DecisionTreeClassifier(random_state=42),param_grid,cv=2)
+grid.fit(X_train,Y_train)
+
+#Best parameters
+
+print("Best Parameters:",grid.best_params_)
+
+#Best model
+best_model=grid.best_estimator_
+
+#Prediction with tuned model
+Y_pred_tuned=best_model.predict(X_test)
+
+print("Accuracy after tuning:",accuracy_score(Y_test,Y_pred_tuned))
+
+#OUTPUT
+
+print("OUTPUT")
+print("Accuracy without tuning:",accuracy_score(Y_test,Y_pred))
+print("Accuracy after tuning:",accuracy_score(Y_test,Y_pred_tuned))
+print("Best Parameters:",grid.best_params_)
+
+7. Implementation of KNN using sklearn 
+
+# 7
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+# Sample dataset
+
+data={
+    'Height':[150,160,170,180,155,165,175,185],
+    'Weight':[50,60,70,80,55,65,75,85],
+    'Label':[0,0,1,1,0,0,1,1]   #0=Class A,1=Class B
+}
+df=pd.DataFrame(data)
+df
+
+# Splitting the dataset
+
+X=df[['Height','Weight']]
+Y=df['Label']
+X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.2,random_state=104)
+
+#-------KNN Model--------
+
+model=KNeighborsClassifier(n_neighbors=3)
+
+# Training Model
+model.fit(X_train,Y_train)
+
+# Prediction
+Y_pred=model.predict(X_test)
+
+#Output
+
+print("Predicted Values:",Y_pred)
+print("Actual Values:",Y_test.values)
+
+# Accuracy
+accuracy=accuracy_score(Y_test,Y_pred)
+print("Accuracy:",accuracy)
+
+8. Implementation of Logistic Regression using sklearn
+
+# 8
+import numpy as np
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score,confusion_matrix
+
+# Sample dataset
+data={
+    'Age':[22,25,47,52,46,56,48,55],
+    'Salary':[25000,30000,80000,90000,70000,100000,85000,95000],
+    'Purchased':[0,0,1,1,1,1,1,1] #0=No,1=Yes
+}
+df=pd.DataFrame(data)
+df
+
+import numpy as np
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score,confusion_matrix
+
+# Splitting the data
+
+X=df[['Age','Salary']]
+Y=df['Purchased']
+X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.25,random_state=42)
+
+# ------Logistic Regression Model------
+model=LogisticRegression()
+
+#Training model
+model.fit(X_train,Y_train)
+
+#prediction
+Y_pred=model.predict(X_test)
+
+#----OUTPUT------
+
+print("Predicted Values:",Y_pred)
+print("Actual Values:",Y_test.values)
+print("Accuracy:",accuracy_score(Y_test,Y_pred))
+
+9. Implementation of K-Means Clustering 
+
+#9
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+# Sample dataset
+X = np.array([
+    [1, 2], [2, 3], [3, 3],
+    [8, 8], [9, 8], [8, 9]
+])
+
+# Create K-Means model
+kmeans = KMeans(n_clusters=2, random_state=42, n_init=10)
+
+# Train the model
+kmeans.fit(X)
+
+# Get cluster labels and centroids
+labels = kmeans.labels_
+centroids = kmeans.cluster_centers_
+
+# Display results
+print("Cluster Labels:", labels)
+print("Centroids:\n", centroids)
+
+# Visualize clusters
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='viridis')
+plt.scatter(
+    centroids[:, 0], centroids[:, 1],
+    marker='X', s=200, color='red', label='Centroids'
+)
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.title("K-Means Clustering")
+plt.legend()
+plt.show()
+
+
+
+10. Performance analysis of Classification Algorithms on a specific dataset (Mini Project)
+
+
+
+# 10
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
+# Load dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Split dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# Define classification algorithms
+models = {
+    "Logistic Regression": make_pipeline(
+        StandardScaler(), LogisticRegression(max_iter=1000)
+    ),
+    "KNN": make_pipeline(
+        StandardScaler(), KNeighborsClassifier(n_neighbors=5)
+    ),
+    "Decision Tree": DecisionTreeClassifier(random_state=42),
+    "SVM": make_pipeline(
+        StandardScaler(), SVC()
+    ),
+    "Random Forest": RandomForestClassifier(random_state=42)
+}
+
+# Evaluate each classifier
+results = []
+
+for name, model in models.items():
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    accuracy = accuracy_score(y_test, y_pred)
+    results.append([name, accuracy * 100])
+
+    print("\nAlgorithm:", name)
+    print("Accuracy:", round(accuracy * 100, 2), "%")
+    print(classification_report(
+        y_test, y_pred,
+        target_names=iris.target_names,
+        zero_division=0
+    ))
+
+# Display performance comparison
+df = pd.DataFrame(
+    results, columns=["Algorithm", "Accuracy (%)"]
+)
+
+print("\nPerformance Comparison:")
+print(df.to_string(index=False))
+
+# Plot comparison graph
+plt.figure(figsize=(10, 6))
+plt.bar(df["Algorithm"], df["Accuracy (%)"])
+plt.title("Performance Analysis of Classification Algorithms")
+plt.xlabel("Classification Algorithms")
+plt.ylabel("Accuracy (%)")
+plt.ylim(0, 105)
+plt.xticks(rotation=20)
+plt.tight_layout()
+plt.show()
+
+output:
+
+Algorithm: Logistic Regression
+Accuracy: 93.33 %
+              precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        10
+  versicolor       0.90      0.90      0.90        10
+   virginica       0.90      0.90      0.90        10
+
+    accuracy                           0.93        30
+   macro avg       0.93      0.93      0.93        30
+weighted avg       0.93      0.93      0.93        30
+
+
+Algorithm: KNN
+Accuracy: 93.33 %
+              precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        10
+  versicolor       0.83      1.00      0.91        10
+   virginica       1.00      0.80      0.89        10
+
+    accuracy                           0.93        30
+   macro avg       0.94      0.93      0.93        30
+weighted avg       0.94      0.93      0.93        30
+
+
+Algorithm: Decision Tree
+Accuracy: 93.33 %
+              precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        10
+  versicolor       0.90      0.90      0.90        10
+   virginica       0.90      0.90      0.90        10
+
+    accuracy                           0.93        30
+   macro avg       0.93      0.93      0.93        30
+weighted avg       0.93      0.93      0.93        30
+
+
+Algorithm: SVM
+Accuracy: 96.67 %
+              precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        10
+  versicolor       1.00      0.90      0.95        10
+   virginica       0.91      1.00      0.95        10
+
+    accuracy                           0.97        30
+   macro avg       0.97      0.97      0.97        30
+weighted avg       0.97      0.97      0.97        30
+
+
+Algorithm: Random Forest
+Accuracy: 90.0 %
+              precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        10
+  versicolor       0.82      0.90      0.86        10
+   virginica       0.89      0.80      0.84        10
+
+    accuracy                           0.90        30
+   macro avg       0.90      0.90      0.90        30
+weighted avg       0.90      0.90      0.90        30
+
+
+Performance Comparison:
+          Algorithm  Accuracy (%)
+Logistic Regression     93.333333
+                KNN     93.333333
+      Decision Tree     93.333333
+                SVM     96.666667
+      Random Forest     90.000000
+
+
